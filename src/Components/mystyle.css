@@ -1,3 +1,11 @@
-.container{
+.hell{
+    
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 10%;
     text-align: left;
+}
+.hell2{
+    width: 75%;
 }
