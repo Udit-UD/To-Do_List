@@ -2,59 +2,59 @@ import './App.css';
 import Header from './Components/Header';
 import { Todos } from "./Components/Todos";
 import { Footer } from "./Components/Footer";
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Addtodo } from "./Components/Addtodo";
 
 function App() {
-  const onDelete = (todo)=>{
-    console.log(todo.title," Deleted!!")
-
-    setTodolist(todolist.filter((e)=>{
-      return e!==todo;
-    }))
+  let initTodo;
+  if (localStorage.getItem("todos") === null) {
+    initTodo = [];
   }
-  
-  const addTodo = (title,desc) =>{
+  else {
+    initTodo = JSON.parse(localStorage.getItem("todos"));
+  }
+
+
+  const onDelete = (todo) => {
+    console.log(todo.title, " Deleted!!")
+
+    setTodolist(todolist.filter((e) => {
+      return e !== todo;
+    }))
+    console.log("Deleted!!!", todo);
+    localStorage.setItem("todos", JSON.stringify(todolist));
+  }
+
+  const addTodo = (title, desc) => {
     console.log("I am adding!");
     let sno;
-    if (todolist.length===0){
-      sno =0 ;
+    if (todolist.length === 0) {
+      sno = 0;
     }
-    else{
-      sno = todolist[todolist.length-1].sno + 1;
+    else {
+      sno = todolist[todolist.length - 1].sno + 1;
     }
 
-    const myTodo ={
+    const myTodo = {
       sno: sno,
       title: title,
       desc: desc
     }
-    setTodolist([...todolist,myTodo]);
+    setTodolist([...todolist, myTodo]);
   }
 
-  const [todolist, setTodolist] = useState([
-    {
-      sno: 1,
-      title: "Go to mall",
-      desc: "You need to go to mall for some shopping"
-    },
-    {
-      sno: 2,
-      title: "Go to saloon",
-      desc: "You need to go to saloon for some Grooming"
-    },
-    {
-      sno: 3,
-      title: "Go to Temple",
-      desc: "You need to go to Temple as it is Saavan's Somvaar Today"
-    }
-  ])
+  const [todolist, setTodolist] = useState(initTodo);
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todolist));
+  }, [todolist])
+
+
   return (
     <div className="App">
-      <Header/>
+      <Header />
       <Addtodo addTodo={addTodo} />
-      <Todos todos={todolist} onDelete={onDelete}/>
-      <Footer/>
+      <Todos todos={todolist} onDelete={onDelete} />
+      <Footer />
     </div>
   );
 }

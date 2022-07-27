@@ -2,8 +2,8 @@ import React from 'react'
 
 export const Footer = () => {
   let cssStyle={
-    padding: "5px"
-    
+    padding: "5px",
+    top: "75%"
   }
   return (
     <footer className='bg-dark text-light  ' style={cssStyle}>

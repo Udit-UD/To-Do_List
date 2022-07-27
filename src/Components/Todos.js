@@ -1,24 +1,24 @@
 import React from 'react'
 import {Todoitem} from './Todoitem'
-
+import './mystyle.css'
 
 export const Todos = (props) => {
     let myStyle = {
-        minHeight: "70vh",
+        minHeight: "70vh"
     }
-
-    
   return (
-    <div className="container mb-3" style={myStyle}>
+    <>
         <h2 className='mt-3 mb-4'>Todos list</h2>
+    <div className="container mb-3" style={myStyle}>
         <div>
             {props.todos.length===0?<h4 className="text-justify">No tasks left for today!!</h4>:
             props.todos.map((todo)=>{
-                return <Todoitem todo={todo} key={todo.sno} onDelete={props.onDelete} />})
+                console.log(todo.sno);
+                return (<Todoitem todo={todo} key={todo.sno} onDelete={props.onDelete} />)
+            })
             }
         </div>
-        
-    </div>
+    </div></>
   )
 }
-export default Todos
+export default Todos;
