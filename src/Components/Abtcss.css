@@ -1,9 +1,8 @@
 #cont{
-    display: flex;
     justify-content: center;
 }
 .cont{
-    min-width: 70%;
+    /* min-width: 70%; */
     justify-content: center;
 }
 .x{
