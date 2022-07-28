@@ -1,0 +1,13 @@
+#cont{
+    display: flex;
+    justify-content: center;
+}
+.cont{
+    min-width: 70%;
+    justify-content: center;
+}
+.x{
+    width: 80%;
+    margin: auto;
+    text-align: left;
+}

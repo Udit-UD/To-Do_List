@@ -3,7 +3,14 @@ import Header from './Components/Header';
 import { Todos } from "./Components/Todos";
 import { Footer } from "./Components/Footer";
 import React, { useState, useEffect } from 'react'
+import { About } from "./Components/About";
+
 import { Addtodo } from "./Components/Addtodo";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 function App() {
   let initTodo;
@@ -50,11 +57,24 @@ function App() {
 
 
   return (
-    <div className="App">
-      <Header />
-      <Addtodo addTodo={addTodo} />
-      <Todos todos={todolist} onDelete={onDelete} />
-      <Footer />
+    <div className='App'>
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/" render={() => {
+            return (
+              <>
+                <Addtodo addTodo={addTodo} />
+                <Todos todos={todolist} onDelete={onDelete} />
+              </>)
+          }}>
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+        </Switch>
+        <Footer />
+      </Router>
     </div>
   );
 }
